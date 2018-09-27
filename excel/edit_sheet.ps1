@@ -8,12 +8,7 @@
 # Global Variables
 $pathBaseFolder="C:\Demos\Powershell\ExcelFiles";
 $pathOutputFolder="${pathBaseFolder}\Output";
-$pathSourceFile = "${pathBaseFolder}\Demo_Source.xlsx";
 
-if (!(Test-Path ${pathSourceFile})) { 
-    echo "Unable to find the file: ${pathSourceFile} !";
-    exit
-}
 
 if(!(Test-Path -Path ${pathOutputFolder})){ 
     echo "Creating Output Folder: ${pathOutputFolder} !";
@@ -29,8 +24,8 @@ $xlShiftToLeft = -4159;
 
 # Read Files:
 Get-ChildItem -Recurse -Name -Filter "*.xlsx" ${pathBaseFolder} | % {
-	$pathSourceExcelFile = "${pathBaseFolder}\$_"
-	$objSrcWorkbook = $appExcelObj.workbooks.open(${pathSourceExcelFile});
+    $pathSourceExcelFile = "${pathBaseFolder}\$_"
+    $objSrcWorkbook = $appExcelObj.workbooks.open(${pathSourceExcelFile});
     # Handle with first worksheet
     $objWorksheet = $objSrcWorkbook.Worksheets.item(1);
     $strShowLog =  $_ + " ============= " + $objWorksheet.Name + " : " + $objWorksheet.cells.item(4,4).text
@@ -66,7 +61,3 @@ Get-ChildItem -Recurse -Name -Filter "*.xlsx" ${pathBaseFolder} | % {
 #  End of Excel Operations, Kill Excel Processes
 $appExcelObj.quit()
 ps excel | kill  #for some reason Excel stays
-
-
-
-
