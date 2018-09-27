@@ -19,6 +19,12 @@ if(!(Test-Path -Path ${pathOutputFolder})){
 $appExcelObj=New-Object -ComObject Excel.Application;
 
 # Enum for Cell Operations 
+# Ref: https://docs.microsoft.com/en-us/office/vba/api/excel.xldirection
+# Value   Description
+# -4121   Down.
+# -4159   To left.
+# -4161   To right.
+# -4162   Up.
 $xlShiftToRight = -4121;
 $xlShiftToLeft = -4159;
 
